@@ -5,15 +5,15 @@
     --bg: #07070a;
     --accent: #2563eb;
     --accent-hover: #3b82f6;
-    --accent-subtle: rgba(37, 99, 235, 0.15);
-    --accent-glow: rgba(37, 99, 235, 0.25);
-    --text-primary: #ededef;
-    --text-secondary: #a1a1aa;
-    --text-tertiary: #71717a;
-    --glass-bg: rgba(10, 10, 15, 0.75);
-    --glass-border: rgba(255, 255, 255, 0.06);
-    --glass-hover: rgba(255, 255, 255, 0.04);
-    --card-bg: rgba(12, 12, 18, 0.85);
+    --accent-subtle: rgba(37, 99, 235, 0.18);
+    --accent-glow: rgba(37, 99, 235, 0.3);
+    --text-primary: #ffffff;
+    --text-secondary: #d6d6dd;
+    --text-tertiary: #9d9da8;
+    --glass-bg: #0d0d15;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-hover: rgba(255, 255, 255, 0.06);
+    --card-bg: #0d0d15;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --radius: 12px;
     --radius-lg: 16px;
@@ -43,7 +43,7 @@ body::before {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.85;
+    opacity: 0.9;
     filter: blur(0.5px);
     pointer-events: none;
     z-index: 0;
@@ -65,9 +65,8 @@ nav {
     align-items: center;
     justify-content: space-between;
     padding: 16px 32px;
-    background: linear-gradient(180deg, rgba(7, 7, 10, 0.85) 0%, transparent 100%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: #0a0a10;
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .nav-logo {
@@ -136,9 +135,11 @@ nav {
     transform: translateY(0);
 }
 
-/* ── Hero (shader host) ── */
+/* ── Hero (shader host) — FULL WIDTH ── */
 .hero {
     min-height: 100vh;
+    width: 100%;
+    max-width: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -159,7 +160,7 @@ nav {
     height: 100%;
     z-index: 0;
     pointer-events: none;
-    opacity: 0.45;
+    opacity: 0.5;
     mix-blend-mode: screen;
 }
 
@@ -170,9 +171,9 @@ nav {
     z-index: 1;
     pointer-events: none;
     background:
-        radial-gradient(ellipse at 50% 0%, rgba(7, 7, 10, 0.12) 0%, transparent 70%),
-        radial-gradient(ellipse at 50% 100%, rgba(7, 7, 10, 0.18) 0%, transparent 60%),
-        linear-gradient(180deg, rgba(7, 7, 10, 0.05) 0%, rgba(7, 7, 10, 0.35) 100%);
+        radial-gradient(ellipse at 50% 0%, rgba(7, 7, 10, 0.15) 0%, transparent 70%),
+        radial-gradient(ellipse at 50% 100%, rgba(7, 7, 10, 0.2) 0%, transparent 60%),
+        linear-gradient(180deg, rgba(7, 7, 10, 0.1) 0%, rgba(7, 7, 10, 0.45) 100%);
 }
 
 .hero > *:not(#shader-canvas):not(#shader-overlay) {
@@ -267,7 +268,7 @@ nav {
     font-weight: 600;
     font-family: var(--font-sans);
     color: var(--text-primary);
-    background: #14141d;
+    background: #1a1a24;
     border: 1px solid var(--glass-border);
     border-radius: 10px;
     cursor: pointer;
@@ -276,8 +277,8 @@ nav {
 }
 
 .btn-secondary:hover {
-    background: #1e1e2a;
-    border-color: rgba(255, 255, 255, 0.1);
+    background: #262632;
+    border-color: rgba(255, 255, 255, 0.14);
     transform: translateY(-2px);
 }
 
@@ -298,14 +299,16 @@ nav {
 }
 
 .hero-scroll svg {
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
-/* ── Sections ── */
+/* ── Sections (content constrained, backgrounds full-bleed) ── */
 section {
     padding: 80px 24px;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 section h2 {
@@ -330,21 +333,21 @@ section .section-subtitle {
     background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
     max-width: 800px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
-/* ── Glass Card ── */
+/* ── Glass Card (solid surface) ── */
 .glass-card {
     background: var(--card-bg);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     padding: 32px;
     transition: all 300ms var(--ease-out);
 }
 
 .glass-card:hover {
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
     transform: translateY(-2px);
 }
 
@@ -364,9 +367,9 @@ section .section-subtitle {
 }
 
 .feature-card:hover {
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
     transform: translateY(-2px);
-    background: rgba(14, 14, 22, 0.9);
+    background: #12121b;
 }
 
 .feature-icon {
@@ -411,14 +414,14 @@ section .section-subtitle {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-tertiary);
-    background: rgba(255, 255, 255, 0.02);
+    background: #11111a;
     border-bottom: 1px solid var(--glass-border);
 }
 
 .modules-table td {
     padding: 14px 20px;
     font-size: 14px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     color: var(--text-secondary);
 }
 
@@ -432,7 +435,7 @@ section .section-subtitle {
 }
 
 .modules-table tr:hover td {
-    background: rgba(255, 255, 255, 0.02);
+    background: #12121b;
 }
 
 /* ── Dashboard Preview ── */
@@ -454,7 +457,7 @@ section .section-subtitle {
     position: absolute;
     bottom: 0; left: 0; right: 0;
     padding: 48px 32px 32px;
-    background: linear-gradient(0deg, rgba(7, 7, 10, 0.9) 0%, transparent 100%);
+    background: linear-gradient(0deg, #07070a 0%, rgba(7, 7, 10, 0.6) 60%, transparent 100%);
 }
 
 .preview-overlay h3 {
@@ -477,6 +480,8 @@ section .section-subtitle {
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 .stat-item .stat-number {
@@ -514,6 +519,7 @@ section .section-subtitle {
 /* ── Footer ── */
 footer {
     border-top: 1px solid var(--glass-border);
+    background: #0a0a10;
     padding: 32px 24px;
     display: flex;
     justify-content: space-between;
@@ -522,6 +528,8 @@ footer {
     gap: 16px;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 footer .footer-left {
