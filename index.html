@@ -33,10 +33,6 @@
 </head>
 <body>
 
-    <!-- ── WebGL Canvas Background ── -->
-    <canvas id="shader-canvas"></canvas>
-    <div id="shader-overlay"></div>
-
     <!-- ── Navigation ── -->
     <nav>
         <a href="/" class="nav-logo">
@@ -59,6 +55,9 @@
 
     <!-- ── Hero ── -->
     <section class="hero">
+        <!-- WebGL shader effect: only on the hero section -->
+        <canvas id="shader-canvas"></canvas>
+        <div id="shader-overlay"></div>
         <img class="hero-avatar" src="assets/bark-avatar.png" alt="Bark avatar" width="120" height="120">
         <h1>Your server,<br>under control.</h1>
         <p class="tagline">
@@ -354,8 +353,9 @@
         var uTime = gl.getUniformLocation(program, 'u_time');
 
         function resize() {
-            var w = window.innerWidth;
-            var h = window.innerHeight;
+            var rect = canvas.parentElement.getBoundingClientRect();
+            var w = rect.width;
+            var h = rect.height;
             canvas.width = w;
             canvas.height = h;
             gl.viewport(0, 0, w, h);

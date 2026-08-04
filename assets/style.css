@@ -39,40 +39,15 @@ body::before {
     content: '';
     position: fixed;
     inset: -10%;
-    background-image: url('assets/bark-wallpaper.png');
+    background-image: url('/assets/bark-wallpaper.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.12;
+    opacity: 0.85;
     filter: blur(0.5px);
     pointer-events: none;
     z-index: 0;
     transform: translateZ(0);
-}
-
-/* ── WebGL Canvas Background ── */
-#shader-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.3;
-    mix-blend-mode: screen;
-}
-
-#shader-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    z-index: 2;
-    pointer-events: none;
-    background:
-        radial-gradient(ellipse at 50% 0%, rgba(7, 7, 10, 0.4) 0%, transparent 70%),
-        radial-gradient(ellipse at 50% 100%, rgba(7, 7, 10, 0.6) 0%, transparent 60%),
-        linear-gradient(180deg, rgba(7, 7, 10, 0.2) 0%, rgba(7, 7, 10, 0.8) 100%);
 }
 
 /* ── Content overlay ── */
@@ -161,7 +136,7 @@ nav {
     transform: translateY(0);
 }
 
-/* ── Hero ── */
+/* ── Hero (shader host) ── */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -170,6 +145,39 @@ nav {
     justify-content: center;
     text-align: center;
     padding: 120px 24px 80px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* ── WebGL Canvas — scoped to the hero only ── */
+#shader-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.45;
+    mix-blend-mode: screen;
+}
+
+#shader-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(7, 7, 10, 0.12) 0%, transparent 70%),
+        radial-gradient(ellipse at 50% 100%, rgba(7, 7, 10, 0.18) 0%, transparent 60%),
+        linear-gradient(180deg, rgba(7, 7, 10, 0.05) 0%, rgba(7, 7, 10, 0.35) 100%);
+}
+
+.hero > *:not(#shader-canvas):not(#shader-overlay) {
+    position: relative;
+    z-index: 2;
 }
 
 .hero-avatar {
@@ -259,7 +267,7 @@ nav {
     font-weight: 600;
     font-family: var(--font-sans);
     color: var(--text-primary);
-    background: var(--glass-bg);
+    background: #14141d;
     border: 1px solid var(--glass-border);
     border-radius: 10px;
     cursor: pointer;
@@ -268,7 +276,7 @@ nav {
 }
 
 .btn-secondary:hover {
-    background: var(--card-bg);
+    background: #1e1e2a;
     border-color: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
 }
@@ -526,7 +534,7 @@ footer .footer-left img {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    opacity: 0.6;
+    opacity: 1;
 }
 
 footer .footer-left span {
