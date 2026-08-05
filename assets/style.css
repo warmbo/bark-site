@@ -27,6 +27,8 @@ nav > a:hover, .text-link:hover, footer a:hover { color: var(--blue-bright); }
 
 .hero { max-width: 840px; margin: 0 auto; padding: 112px 24px 88px; text-align: center; }
 .hero-avatar { border-radius: 50%; box-shadow: 0 0 0 1px var(--border), 0 0 54px rgba(59,130,246,.28); }
+.hero-video { width: min(320px, 72vw); height: min(320px, 72vw); min-width: 300px; min-height: 300px; object-fit: cover; display: block; margin: 0 auto; background: #0b1220; }
+
 .eyebrow { margin: 22px 0 10px; color: var(--blue-bright); font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 h1, h2, h3, p { margin-top: 0; }
 h1 { margin-bottom: 18px; font-size: clamp(44px, 8vw, 76px); letter-spacing: -.055em; line-height: .98; }
