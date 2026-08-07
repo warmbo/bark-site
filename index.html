@@ -17,12 +17,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css?v=4">
+  <link rel="stylesheet" href="assets/style.css?v=5">
 </head>
 <body>
   <header class="site-header">
     <a href="/" class="brand"><img src="assets/bark-avatar.png" alt="Bark logo" width="36" height="36"><span>Bark</span></a>
-    <nav aria-label="Primary"><a href="#features">Features</a><a href="#dashboard">Dashboard</a><a href="https://github.com/warmbo/bark" target="_blank" rel="noopener">GitHub</a><a href="/auth/login" class="button button-small">Sign in</a></nav>
+    <nav aria-label="Primary"><a href="#features">Features</a><a href="#modules">Modules</a><a href="#dashboard">Dashboard</a><a href="https://github.com/warmbo/bark" target="_blank" rel="noopener">GitHub</a><a href="/auth/login" class="button button-small">Sign in</a></nav>
   </header>
 
   <main>
@@ -54,6 +54,24 @@
         <article><span aria-hidden="true">🏆</span><h3>Community</h3><p>Good behavior earns levels, thanks, emoji and reaction scoring, named tiers, leaderboards, and rewards.</p></article>
         <article><span aria-hidden="true">⚙️</span><h3>Automation</h3><p>Bark takes care of the fleas on its own: role rules, temporary voice, announcements, welcomes, and logging.</p></article>
       </div>
+    </section>
+
+    <section id="modules" class="content-section modules-section">
+      <p class="eyebrow">Core modules</p>
+      <h2>Everything Bark can do, out of the box.</h2>
+      <p class="section-intro">Every core module is a workspace in the dashboard — enable it per server, configure it, and it just works.</p>
+      <div class="feature-grid">
+        <article><span aria-hidden="true">🛡️</span><h3>Moderation</h3><p>Warn, timeout, kick, ban, and voice-control members with full case tracking, audit logging, and automatic content moderation.</p></article>
+        <article><span aria-hidden="true">🏆</span><h3>Reputation</h3><p>Level system, thanks, reactions, voice rewards, tiers, and a showoff channel.</p></article>
+        <article><span aria-hidden="true">🎭</span><h3>Role Manager</h3><p>Auto-assign roles on join, tenure, voice, Twitch streams, and reaction claims.</p></article>
+        <article><span aria-hidden="true">📣</span><h3>Announcements</h3><p>Send text or embed announcements to a configurable channel.</p></article>
+        <article><span aria-hidden="true">🔊</span><h3>Auto Voice</h3><p>AVC-compatible temporary voice channels with dashboard configuration.</p></article>
+        <article><span aria-hidden="true">📜</span><h3>Logging</h3><p>Log message edits, deletes, file uploads, member joins/leaves, and voice state.</p></article>
+        <article><span aria-hidden="true">👋</span><h3>Welcome</h3><p>Welcome messages, goodbye messages, and optional embeds for new members.</p></article>
+        <article><span aria-hidden="true">🗣️</span><h3>Speak</h3><p>Preset phrases triggered by <code>/bark speak &lt;key&gt;</code> — configured in the dashboard.</p></article>
+        <article><span aria-hidden="true">❓</span><h3>Help</h3><p>DMs every available slash command plus dashboard info.</p></article>
+      </div>
+      <p class="section-intro">Plus single-file plugins — trivia, dice roller, polls, fun facts, and more — from the <a href="https://github.com/warmbo/bark-plugins" target="_blank" rel="noopener">bark-plugins</a> repo, installed from the dashboard without a restart.</p>
     </section>
 
     <section id="dashboard" class="content-section dashboard-section">

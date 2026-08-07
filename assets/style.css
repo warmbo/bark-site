@@ -78,3 +78,10 @@ footer a { color: var(--muted); text-decoration: none; }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Modules section */
+.modules-section .section-intro { margin-bottom: 26px; }
+.modules-section .section-intro a { color: var(--blue-bright); text-decoration: none; font-weight: 600; }
+.modules-section .section-intro a:hover { text-decoration: underline; }
+.modules-section .feature-grid article { min-height: 158px; }
+.modules-section code { background: #17233b; padding: 2px 6px; border-radius: 5px; font-size: 13px; }
