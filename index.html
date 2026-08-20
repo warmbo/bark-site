@@ -32,7 +32,7 @@
   <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/style.css?v=14">
+  <link rel="stylesheet" href="assets/style.css?v=15">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -56,13 +56,13 @@
 
   <main id="main">
     <!-- ══════════════ HERO ══════════════ -->
-    <section class="hero">
+    <section class="hero" id="dashboard">
       <div class="hero-inner">
         <div class="eyebrow"><span class="dot-green"></span>Self-hosted · Open source · Dashboard-first</div>
         <h1>Discord management from <span class="accent">one dashboard</span>.</h1>
         <p class="hero-copy">Moderation, reputation, roles and automation in one self-hosted Discord dashboard.</p>
         <div class="actions">
-          <a href="#dashboard" class="button button-primary">Explore Bark</a>
+          <a href="#product" class="button button-primary">Explore Bark</a>
           <a href="https://github.com/warmbo/bark" target="_blank" rel="noopener" class="button button-secondary">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
             View on GitHub
@@ -105,6 +105,19 @@
           <button type="button" class="hero-page-dot" data-hero-control="stats" aria-label="Show Statistics" aria-pressed="false"><span class="hero-page-bar"><span></span></span><span class="hero-page-title">Statistics</span></button>
           <button type="button" class="hero-page-dot" data-hero-control="modules" aria-label="Show Modules" aria-pressed="false"><span class="hero-page-bar"><span></span></span><span class="hero-page-title">Modules</span></button>
         </div>
+      </div>
+
+      <div class="hero-workspace" aria-label="One server workspace and authorization model">
+        <div class="hero-workspace-copy">
+          <p class="eyebrow">One server. One workspace.</p>
+          <p>Choose a server, manage every module, and follow activity from the same interface.</p>
+        </div>
+        <ul class="hero-workspace-facts">
+          <li><strong>One workspace</strong><span>Every server and module</span></li>
+          <li><strong>Live activity</strong><span>No manual refresh</span></li>
+          <li><strong>Role-gated</strong><span>Viewer → Moderator → Admin → Owner</span></li>
+        </ul>
+        <a href="/auth/login" class="text-link">Open dashboard →</a>
       </div>
     </section>
 
@@ -152,80 +165,18 @@
           <h3>Nine focused tools, visible at a glance.</h3>
         </div>
         <div class="module-grid reveal">
-          <article class="module-card"><div class="module-card-head"><span class="mod-icon">MOD</span><h3>Moderation</h3><span class="mod-tag">core</span></div><p>Cases, warnings, AutoMod, anti-raid and voice actions.</p></article>
-          <article class="module-card"><div class="module-card-head"><span class="mod-icon">REP</span><h3>Reputation</h3><span class="mod-tag">core</span></div><p>Engagement scoring, tiers, rewards and leaderboards.</p></article>
-          <article class="module-card"><div class="module-card-head"><span class="mod-icon">ROLE</span><h3>Role Manager</h3><span class="mod-tag">core</span></div><p>Roles from joins, tenure, voice, Twitch and reactions.</p></article>
-          <article class="module-card"><div class="module-card-head"><span class="mod-icon">ANN</span><h3>Announcements</h3><span class="mod-tag">core</span></div><p>Text and rich-embed announcements.</p></article>
-          <article class="module-card"><div class="module-card-head"><span class="mod-icon">VC</span><h3>Auto Voice</h3><span class="mod-tag">core</span></div><p>Temporary voice channels with owner controls.</p></article>
-          <article class="module-card"><div class="module-card-head"><span class="mod-icon">LOG</span><h3>Logging</h3><span class="mod-tag">core</span></div><p>Message, file, member and voice-event history.</p></article>
-          <article class="module-card"><div class="module-card-head"><span class="mod-icon">HI</span><h3>Welcome</h3><span class="mod-tag">core</span></div><p>Welcome and goodbye messages with embeds.</p></article>
-          <article class="module-card"><div class="module-card-head"><span class="mod-icon">SAY</span><h3>Speak</h3><span class="mod-tag">core</span></div><p>Dashboard-configured reusable phrases.</p></article>
-          <article class="module-card"><div class="module-card-head"><span class="mod-icon">?</span><h3>Help</h3><span class="mod-tag">core</span></div><p>Commands and dashboard links delivered by DM.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span><h3>Moderation</h3><span class="mod-tag">core</span></div><p>Cases, warnings, AutoMod, anti-raid and voice actions.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a2 2 0 0 0 2 4h1M17 6h3a2 2 0 0 1-2 4h-1"/></svg></span><h3>Reputation</h3><span class="mod-tag">core</span></div><p>Engagement scoring, tiers, rewards and leaderboards.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><path d="M2 20v-2a5 5 0 0 1 10 0v2M15 7h6M18 4v6M15 15h6M18 12v6"/></svg></span><h3>Role Manager</h3><span class="mod-tag">core</span></div><p>Roles from joins, tenure, voice, Twitch and reactions.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 11 18-7-7 18-3-8-8-3Z"/><path d="m11 14 4-4"/></svg></span><h3>Announcements</h3><span class="mod-tag">core</span></div><p>Text and rich-embed announcements.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 6 7 10H3v4h4l5 4V6Z"/><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/></svg></span><h3>Auto Voice</h3><span class="mod-tag">core</span></div><p>Temporary voice channels with owner controls.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h12v18H6zM9 7h6M9 11h6M9 15h4"/></svg></span><h3>Logging</h3><span class="mod-tag">core</span></div><p>Message, file, member and voice-event history.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 13V5h16v8M7 9h.01M11 9h.01M15 9h.01M8 18h8M12 13v5"/></svg></span><h3>Welcome</h3><span class="mod-tag">core</span></div><p>Welcome and goodbye messages with embeds.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"/><path d="M8 11h8M8 7h5"/></svg></span><h3>Speak</h3><span class="mod-tag">core</span></div><p>Dashboard-configured reusable phrases.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.8 2c-1 .7-1.6 1.1-1.6 2.5M12 17h.01"/></svg></span><h3>Help</h3><span class="mod-tag">core</span></div><p>Commands and dashboard links delivered by DM.</p></article>
         </div>
       </div>
     </section>
-
-    <!-- ══════════════ DASHBOARD ══════════════ -->
-    <section class="content-section dashboard-section" id="dashboard">
-      <div class="section-copy">
-        <p class="eyebrow">Dashboard-first</p>
-        <h2>One server. One workspace.</h2>
-        <p>Sign in, choose a server, and manage everything in one consistent interface.</p>
-        <ul class="dash-points">
-          <li><strong>One workspace</strong> for every server and module.</li>
-          <li><strong>Live activity</strong> without refreshing the page.</li>
-          <li><strong>Role-gated access</strong> from Viewer to Owner.</li>
-        </ul>
-        <a href="/auth/login" class="button button-primary">Open the dashboard</a>
-      </div>
-
-      <div class="dashboard-tour reveal" aria-label="Bark dashboard tour">
-        <div class="tour-tabs" role="tablist" aria-label="Dashboard views">
-          <button type="button" class="tour-tab" role="tab" aria-selected="true" aria-controls="tour-overview" id="tour-tab-overview" data-tour="overview">Overview</button>
-          <button type="button" class="tour-tab" role="tab" aria-selected="false" aria-controls="tour-members" id="tour-tab-members" data-tour="members" tabindex="-1">Members</button>
-          <button type="button" class="tour-tab" role="tab" aria-selected="false" aria-controls="tour-moderation" id="tour-tab-moderation" data-tour="moderation" tabindex="-1">Moderation</button>
-          <button type="button" class="tour-tab" role="tab" aria-selected="false" aria-controls="tour-stats" id="tour-tab-stats" data-tour="stats" tabindex="-1">Statistics</button>
-          <button type="button" class="tour-tab" role="tab" aria-selected="false" aria-controls="tour-modules" id="tour-tab-modules" data-tour="modules" tabindex="-1">Modules</button>
-        </div>
-        <div class="gallery">
-        <figure class="gallery-item gallery-item-featured" id="tour-overview" role="tabpanel" aria-labelledby="tour-tab-overview" data-tour-panel="overview">
-          <img src="assets/screenshots/01-overview.webp" alt="Bark server overview — stat cards, recent activity, quick actions and server info" loading="lazy" width="1440" height="900">
-          <figcaption>Server overview — health, member counts, activity and quick actions.</figcaption>
-        </figure>
-        <figure class="gallery-item" id="tour-members" role="tabpanel" aria-labelledby="tour-tab-members" data-tour-panel="members">
-          <img src="assets/screenshots/members.webp" alt="Bark member directory with search and filters" loading="lazy" width="1440" height="900">
-          <figcaption>Member management — locate members and review their state.</figcaption>
-        </figure>
-        <figure class="gallery-item" id="tour-moderation" role="tabpanel" aria-labelledby="tour-tab-moderation" data-tour-panel="moderation">
-          <img src="assets/screenshots/moderation.webp" alt="Bark moderation workspace with Operate and Configure tabs" loading="lazy" width="1440" height="900">
-          <figcaption>Moderation — cases, warnings, notes, rulesets and voice.</figcaption>
-        </figure>
-        <figure class="gallery-item" id="tour-stats" role="tabpanel" aria-labelledby="tour-tab-stats" data-tour-panel="stats">
-          <img src="assets/screenshots/stats.webp" alt="Bark statistics page with activity charts" loading="lazy" width="1440" height="900">
-          <figcaption>Statistics — growth, activity and engagement, charted.</figcaption>
-        </figure>
-        <figure class="gallery-item" id="tour-modules" role="tabpanel" aria-labelledby="tour-tab-modules" data-tour-panel="modules">
-          <img src="assets/screenshots/modules.webp" alt="Bark modules grid with per-module toggles" loading="lazy" width="1440" height="900">
-          <figcaption>Modules — enable and configure every module per server.</figcaption>
-        </figure>
-        </div>
-      </div>
-
-      <div class="perm-band reveal" aria-label="Authorization hierarchy">
-        <div class="perm-intro">
-          <p class="eyebrow">Team access</p>
-          <h3>Permissions follow the job.</h3>
-          <p>Optional Discord OAuth sign-in with server-side role checks.</p>
-        </div>
-        <ol class="perm-steps">
-          <li><span class="perm-level">Viewer</span><span class="perm-desc">Read</span></li>
-          <li><span class="perm-level">Moderator</span><span class="perm-desc">Act</span></li>
-          <li><span class="perm-level">Admin</span><span class="perm-desc">Configure</span></li>
-          <li><span class="perm-level">Owner</span><span class="perm-desc">Operate</span></li>
-        </ol>
-      </div>
-    </section>
-
 
     <!-- ══════════════ PLUGINS ══════════════ -->
     <section class="content-section plugins-section" id="plugins">
@@ -321,6 +272,6 @@
     </div>
   </footer>
 
-  <script src="assets/site.js?v=7"></script>
+  <script src="assets/site.js?v=8"></script>
 </body>
 </html>
