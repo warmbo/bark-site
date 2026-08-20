@@ -19,7 +19,8 @@ add-on set.
   system (sharp, dark navy/near-black, thin borders, electric-blue accent, dense,
   restrained motion, self-hosted fonts, no CDN drift).
 - `assets/site.js` — progressive enhancement only (mobile nav, login-state detection,
-  scroll reveal). Content is fully visible without JS.
+  scroll reveal, animated five-page hero deck, dashboard tour). Content is fully
+  visible without JS; motion pauses offscreen/on focus and honors reduced-motion.
 - `assets/fonts/` — self-hosted Inter + JetBrains Mono woff2 (same files the dashboard
   ships; no Google Fonts dependency).
 - `assets/screenshots/` — authentic, optimized WebP captures of the Bark dashboard

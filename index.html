@@ -32,7 +32,7 @@
   <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/style.css?v=10">
+  <link rel="stylesheet" href="assets/style.css?v=11">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -77,10 +77,39 @@
         </ul>
       </div>
 
-      <div class="hero-showcase" aria-hidden="true">
-        <div class="shot-frame">
-          <img src="assets/screenshots/dash-hero.webp" alt="Bark dashboard — server overview with member stats, message of the day and upcoming events" loading="eager" fetchpriority="high" width="1010" height="1060">
-          <div class="shot-status"><span class="dot-green"></span>Connected · Live</div>
+      <div class="hero-showcase" data-hero-showcase aria-label="Animated tour of Bark dashboard pages">
+        <div class="hero-deck">
+          <div class="hero-deck-glow" aria-hidden="true"></div>
+          <figure class="hero-page is-active" data-hero-page="overview">
+            <img src="assets/screenshots/01-overview.webp" alt="Bark server overview with activity, member counts and quick actions" loading="eager" fetchpriority="high" width="1440" height="900">
+            <figcaption><strong>Overview</strong><span>Server health, activity and quick actions</span></figcaption>
+          </figure>
+          <figure class="hero-page" data-hero-page="members" hidden>
+            <img src="assets/screenshots/members.webp" alt="Bark searchable member directory" loading="lazy" width="1440" height="900">
+            <figcaption><strong>Members</strong><span>Search, inspect and manage your community</span></figcaption>
+          </figure>
+          <figure class="hero-page" data-hero-page="moderation" hidden>
+            <img src="assets/screenshots/moderation.webp" alt="Bark moderation workspace" loading="lazy" width="1440" height="900">
+            <figcaption><strong>Moderation</strong><span>Cases, warnings, rulesets and voice actions</span></figcaption>
+          </figure>
+          <figure class="hero-page" data-hero-page="stats" hidden>
+            <img src="assets/screenshots/stats.webp" alt="Bark statistics dashboard with activity charts" loading="lazy" width="1440" height="900">
+            <figcaption><strong>Statistics</strong><span>Growth, engagement and reputation trends</span></figcaption>
+          </figure>
+          <figure class="hero-page" data-hero-page="modules" hidden>
+            <img src="assets/screenshots/modules.webp" alt="Bark modules page with per-server controls" loading="lazy" width="1440" height="900">
+            <figcaption><strong>Modules</strong><span>Enable and configure features per server</span></figcaption>
+          </figure>
+          <div class="shot-status"><span class="dot-green"></span><span data-hero-status aria-live="polite">Overview · Live</span></div>
+          <div class="hero-scanline" aria-hidden="true"></div>
+        </div>
+        <div class="hero-page-controls" aria-label="Choose a dashboard page">
+          <button type="button" class="hero-page-dot is-active" data-hero-control="overview" aria-label="Show Overview" aria-pressed="true"></button>
+          <button type="button" class="hero-page-dot" data-hero-control="members" aria-label="Show Members" aria-pressed="false"></button>
+          <button type="button" class="hero-page-dot" data-hero-control="moderation" aria-label="Show Moderation" aria-pressed="false"></button>
+          <button type="button" class="hero-page-dot" data-hero-control="stats" aria-label="Show Statistics" aria-pressed="false"></button>
+          <button type="button" class="hero-page-dot" data-hero-control="modules" aria-label="Show Modules" aria-pressed="false"></button>
+          <span class="hero-progress" aria-hidden="true"><span class="hero-progress-fill"></span></span>
         </div>
       </div>
     </section>
@@ -543,6 +572,6 @@
     </div>
   </footer>
 
-  <script src="assets/site.js?v=4"></script>
+  <script src="assets/site.js?v=5"></script>
 </body>
 </html>

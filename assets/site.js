@@ -30,6 +30,114 @@
     });
   }
 
+  /* ── Animated hero dashboard deck ── */
+  var heroShowcase = document.querySelector('[data-hero-showcase]');
+  if (heroShowcase) {
+    var heroPages = Array.prototype.slice.call(heroShowcase.querySelectorAll('[data-hero-page]'));
+    var heroControls = Array.prototype.slice.call(heroShowcase.querySelectorAll('[data-hero-control]'));
+    var heroStatus = heroShowcase.querySelector('[data-hero-status]');
+    var heroProgress = heroShowcase.querySelector('.hero-progress-fill');
+    var heroNames = heroPages.map(function (page) { return page.getAttribute('data-hero-page'); });
+    var heroColors = {
+      overview: '#3b82f6',
+      members: '#22c55e',
+      moderation: '#ef4444',
+      stats: '#a78bfa',
+      modules: '#f59e0b'
+    };
+    var heroLabels = {
+      overview: 'Overview', members: 'Members', moderation: 'Moderation',
+      stats: 'Statistics', modules: 'Modules'
+    };
+    var heroIndex = 0;
+    var heroTimer = null;
+    var heroDuration = 4600;
+    var heroHovered = false;
+    var heroFocused = false;
+    var heroVisible = true;
+    var heroReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function restartHeroProgress() {
+      if (!heroProgress || heroReduced) return;
+      heroProgress.classList.remove('is-running');
+      void heroProgress.offsetWidth;
+      heroProgress.classList.add('is-running');
+    }
+
+    function heroShouldRun() {
+      return !heroReduced && heroVisible && !heroHovered && !heroFocused && !document.hidden;
+    }
+
+    function scheduleHero() {
+      clearTimeout(heroTimer);
+      heroShowcase.classList.toggle('is-paused', !heroShouldRun());
+      if (!heroShouldRun()) return;
+      restartHeroProgress();
+      heroTimer = setTimeout(function () {
+        showHeroPage((heroIndex + 1) % heroPages.length);
+      }, heroDuration);
+    }
+
+    function showHeroPage(nextIndex) {
+      if (nextIndex === heroIndex) { scheduleHero(); return; }
+      var outgoing = heroPages[heroIndex];
+      var incoming = heroPages[nextIndex];
+      var name = heroNames[nextIndex];
+
+      incoming.hidden = false;
+      incoming.classList.remove('is-leaving');
+      requestAnimationFrame(function () {
+        outgoing.classList.remove('is-active');
+        outgoing.classList.add('is-leaving');
+        incoming.classList.add('is-active');
+      });
+      setTimeout(function () {
+        outgoing.hidden = true;
+        outgoing.classList.remove('is-leaving');
+      }, 800);
+
+      heroIndex = nextIndex;
+      heroShowcase.style.setProperty('--hero-page-color', heroColors[name]);
+      if (heroStatus) heroStatus.textContent = heroLabels[name] + ' · Live';
+      for (var i = 0; i < heroControls.length; i++) {
+        var active = heroControls[i].getAttribute('data-hero-control') === name;
+        heroControls[i].classList.toggle('is-active', active);
+        heroControls[i].setAttribute('aria-pressed', active ? 'true' : 'false');
+      }
+      scheduleHero();
+    }
+
+    for (var hc = 0; hc < heroControls.length; hc++) {
+      heroControls[hc].addEventListener('click', function () {
+        showHeroPage(heroNames.indexOf(this.getAttribute('data-hero-control')));
+      });
+      heroControls[hc].addEventListener('focus', function () {
+        heroFocused = true;
+        scheduleHero();
+      });
+      heroControls[hc].addEventListener('blur', function () {
+        setTimeout(function () {
+          heroFocused = heroShowcase.contains(document.activeElement);
+          scheduleHero();
+        }, 0);
+      });
+    }
+    heroShowcase.addEventListener('mouseenter', function () { heroHovered = true; scheduleHero(); });
+    heroShowcase.addEventListener('mouseleave', function () { heroHovered = false; scheduleHero(); });
+    heroShowcase.addEventListener('focusin', function () { heroFocused = true; scheduleHero(); });
+    heroShowcase.addEventListener('focusout', function (e) {
+      if (!heroShowcase.contains(e.relatedTarget)) { heroFocused = false; scheduleHero(); }
+    });
+    document.addEventListener('visibilitychange', scheduleHero);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        heroVisible = entries[0].isIntersecting;
+        scheduleHero();
+      }, { threshold: 0.12 }).observe(heroShowcase);
+    }
+    scheduleHero();
+  }
+
   /* ── Login-state detection ──
      The site is served independently from the bot, but /auth/* is
      proxied to the Bark instance. Detect an existing session and
