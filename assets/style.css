@@ -48,7 +48,7 @@ body { min-height: 100vh; background: var(--bg); overflow-x: hidden; }
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: url('assets/bark-wallpaper.png') center / cover no-repeat;
+  background: url('bark-wallpaper.png') center / cover no-repeat;
   opacity: 0.30;
 }
 .backdrop::after {
