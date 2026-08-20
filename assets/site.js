@@ -35,8 +35,6 @@
   if (heroShowcase) {
     var heroPages = Array.prototype.slice.call(heroShowcase.querySelectorAll('[data-hero-page]'));
     var heroControls = Array.prototype.slice.call(heroShowcase.querySelectorAll('[data-hero-control]'));
-    var heroStatus = heroShowcase.querySelector('[data-hero-status]');
-
     var heroNames = heroPages.map(function (page) { return page.getAttribute('data-hero-page'); });
     var heroColors = {
       overview: '#3b82f6',
@@ -45,10 +43,7 @@
       stats: '#a78bfa',
       modules: '#f59e0b'
     };
-    var heroLabels = {
-      overview: 'Overview', members: 'Members', moderation: 'Moderation',
-      stats: 'Statistics', modules: 'Modules'
-    };
+
     var heroIndex = 0;
     var heroTimer = null;
     var heroDuration = 4600;
@@ -100,7 +95,6 @@
 
       heroIndex = nextIndex;
       heroShowcase.style.setProperty('--hero-page-color', heroColors[name]);
-      if (heroStatus) heroStatus.textContent = heroLabels[name];
       for (var i = 0; i < heroControls.length; i++) {
         var active = heroControls[i].getAttribute('data-hero-control') === name;
         heroControls[i].classList.toggle('is-active', active);

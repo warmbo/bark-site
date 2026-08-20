@@ -321,22 +321,7 @@ h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
 .hero-page figcaption strong { color: var(--foreground); font-size: 13px; }
 .hero-page figcaption span { color: var(--muted); font-size: 12px; }
 
-.shot-status {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 5px 11px;
-  background: rgba(11,11,14,.82);
-  border: 1px solid var(--border-strong);
-  color: var(--foreground);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  z-index: 5;
-  backdrop-filter: blur(8px);
-}
+
 .hero-page-controls {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
