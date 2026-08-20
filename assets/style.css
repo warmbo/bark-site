@@ -288,7 +288,7 @@ h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
   background: var(--card);
   opacity: 0;
   transform: translate3d(24px, 0, 0) scale(.99);
-  transition: opacity 260ms ease-out, transform 320ms var(--ease);
+  transition: opacity 720ms ease-in-out, transform 720ms var(--ease);
   pointer-events: none;
 }
 .hero-page.is-active {
@@ -338,35 +338,56 @@ h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
   backdrop-filter: blur(8px);
 }
 .hero-page-controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 20px;
-  padding: 0 2px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+  padding: 0;
 }
 .hero-page-dot {
-  width: 30px;
-  height: 30px;
-  display: inline-grid;
-  place-items: center;
-  border: 1px solid var(--border-strong);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  border: 0;
   border-radius: var(--radius);
-  background: var(--card);
+  background: transparent;
+  padding: 0;
+  text-align: left;
   cursor: pointer;
-  transition: transform 180ms var(--ease), border-color 180ms var(--ease), background 180ms var(--ease);
+  color: var(--muted-dim);
+  transition: color 220ms var(--ease);
 }
-.hero-page-dot::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  background: var(--muted-dim);
-  transform: rotate(45deg);
-  transition: transform 180ms var(--ease), background 180ms var(--ease);
+.hero-page-bar {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  overflow: hidden;
+  background: rgba(157, 157, 166, .16);
 }
-.hero-page-dot:hover { transform: translateY(-2px); border-color: var(--muted); }
-.hero-page-dot.is-active { border-color: var(--hero-page-color); background: color-mix(in oklab, var(--hero-page-color) 13%, var(--card)); }
-.hero-page-dot.is-active::before { background: var(--hero-page-color); transform: rotate(45deg) scale(1.45); }
+.hero-page-bar > span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--hero-page-color);
+  opacity: .68;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.hero-page-dot.is-active .hero-page-bar > span { animation: hero-segment-progress 4.6s linear forwards; }
+.hero-showcase.is-paused .hero-page-dot.is-active .hero-page-bar > span { animation-play-state: paused; }
+.hero-page-title {
+  overflow: hidden;
+  color: currentColor;
+  font: 500 11px/1.25 var(--font-sans);
+  letter-spacing: .01em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hero-page-dot:hover { color: var(--muted); }
+.hero-page-dot.is-active { color: color-mix(in oklab, var(--hero-page-color) 42%, var(--muted)); }
+
+@keyframes hero-segment-progress { to { transform: scaleX(1); } }
 
 
 /* ── What Bark Actually Does ──────────────────────────────────── */
@@ -684,6 +705,8 @@ html.js .reveal.in-view { opacity: 1; transform: none; }
   .hero-showcase { overflow: clip; }
   .hero-deck-glow { inset: 0; }
   .hero-page figcaption { align-items: flex-start; flex-direction: column; gap: 3px; }
+  .hero-page-controls { gap: 7px; }
+  .hero-page-title { font-size: 9px; }
   h1 { letter-spacing: -0.03em; }
   .workflow-grid { grid-template-columns: 1fr; }
   .module-grid { grid-template-columns: 1fr; }
@@ -712,5 +735,6 @@ html.js .reveal.in-view { opacity: 1; transform: none; }
   .hero-showcase:hover .hero-deck,
   .hero-showcase:focus-within .hero-deck { transform: none; }
   .hero-page { transform: none; filter: none; }
+  .hero-page-dot.is-active .hero-page-bar > span { animation: none; transform: scaleX(1); }
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }

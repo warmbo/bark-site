@@ -62,10 +62,19 @@
       return !heroReduced && heroVisible && !heroHovered && !heroFocused && !document.hidden;
     }
 
+    function restartHeroBar() {
+      var fill = heroShowcase.querySelector('.hero-page-dot.is-active .hero-page-bar > span');
+      if (!fill || heroReduced) return;
+      fill.style.animation = 'none';
+      void fill.offsetWidth;
+      fill.style.animation = '';
+    }
+
     function scheduleHero() {
       clearTimeout(heroTimer);
       heroShowcase.classList.toggle('is-paused', !heroShouldRun());
       if (!heroShouldRun()) return;
+      restartHeroBar();
       heroTimer = setTimeout(function () {
         showHeroPage((heroIndex + 1) % heroPages.length);
       }, heroDuration);
@@ -87,11 +96,11 @@
       setTimeout(function () {
         outgoing.hidden = true;
         outgoing.classList.remove('is-leaving');
-      }, 360);
+      }, 780);
 
       heroIndex = nextIndex;
       heroShowcase.style.setProperty('--hero-page-color', heroColors[name]);
-      if (heroStatus) heroStatus.textContent = heroLabels[name] + ' · Live';
+      if (heroStatus) heroStatus.textContent = heroLabels[name];
       for (var i = 0; i < heroControls.length; i++) {
         var active = heroControls[i].getAttribute('data-hero-control') === name;
         heroControls[i].classList.toggle('is-active', active);
