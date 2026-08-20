@@ -13,15 +13,17 @@
   <meta property="og:description" content="A self-hosted, dashboard-first Discord management bot. Moderation, reputation, roles, automation, logging and community administration from one server workspace.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bark.warx.org/">
-  <meta property="og:image" content="https://bark.warx.org/assets/bark-avatar.png">
-  <meta property="og:image:width" content="500">
-  <meta property="og:image:height" content="500">
+  <meta property="og:image" content="https://bark.warx.org/assets/bark-og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bark — Discord management from one dashboard">
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Bark — Self-hosted Discord server management">
   <meta name="twitter:description" content="A self-hosted, dashboard-first Discord management bot. Moderation, reputation, roles, automation, logging and community administration from one server workspace.">
-  <meta name="twitter:image" content="https://bark.warx.org/assets/bark-avatar.png">
+  <meta name="twitter:image" content="https://bark.warx.org/assets/bark-og.png">
+  <meta name="twitter:image:alt" content="Bark — Discord management from one dashboard">
 
   <meta name="theme-color" content="#3b82f6">
   <link rel="icon" type="image/png" href="assets/bark-avatar.png">
@@ -30,7 +32,7 @@
   <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/style.css?v=8">
+  <link rel="stylesheet" href="assets/style.css?v=9">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -178,27 +180,36 @@
         <a href="/auth/login" class="button button-primary">Open the dashboard</a>
       </div>
 
-      <div class="gallery reveal">
-        <figure class="gallery-item gallery-item-featured">
+      <div class="dashboard-tour reveal" aria-label="Bark dashboard tour">
+        <div class="tour-tabs" role="tablist" aria-label="Dashboard views">
+          <button type="button" class="tour-tab" role="tab" aria-selected="true" aria-controls="tour-overview" id="tour-tab-overview" data-tour="overview">Overview</button>
+          <button type="button" class="tour-tab" role="tab" aria-selected="false" aria-controls="tour-members" id="tour-tab-members" data-tour="members" tabindex="-1">Members</button>
+          <button type="button" class="tour-tab" role="tab" aria-selected="false" aria-controls="tour-moderation" id="tour-tab-moderation" data-tour="moderation" tabindex="-1">Moderation</button>
+          <button type="button" class="tour-tab" role="tab" aria-selected="false" aria-controls="tour-stats" id="tour-tab-stats" data-tour="stats" tabindex="-1">Statistics</button>
+          <button type="button" class="tour-tab" role="tab" aria-selected="false" aria-controls="tour-modules" id="tour-tab-modules" data-tour="modules" tabindex="-1">Modules</button>
+        </div>
+        <div class="gallery">
+        <figure class="gallery-item gallery-item-featured" id="tour-overview" role="tabpanel" aria-labelledby="tour-tab-overview" data-tour-panel="overview">
           <img src="assets/screenshots/01-overview.webp" alt="Bark server overview — stat cards, recent activity, quick actions and server info" loading="lazy" width="1440" height="900">
           <figcaption>Server overview — health, member counts, activity and quick actions.</figcaption>
         </figure>
-        <figure class="gallery-item">
+        <figure class="gallery-item" id="tour-members" role="tabpanel" aria-labelledby="tour-tab-members" data-tour-panel="members">
           <img src="assets/screenshots/members.webp" alt="Bark member directory with search and filters" loading="lazy" width="1440" height="900">
           <figcaption>Member management — locate members and review their state.</figcaption>
         </figure>
-        <figure class="gallery-item">
+        <figure class="gallery-item" id="tour-moderation" role="tabpanel" aria-labelledby="tour-tab-moderation" data-tour-panel="moderation">
           <img src="assets/screenshots/moderation.webp" alt="Bark moderation workspace with Operate and Configure tabs" loading="lazy" width="1440" height="900">
           <figcaption>Moderation — cases, warnings, notes, rulesets and voice.</figcaption>
         </figure>
-        <figure class="gallery-item">
+        <figure class="gallery-item" id="tour-stats" role="tabpanel" aria-labelledby="tour-tab-stats" data-tour-panel="stats">
           <img src="assets/screenshots/stats.webp" alt="Bark statistics page with activity charts" loading="lazy" width="1440" height="900">
           <figcaption>Statistics — growth, activity and engagement, charted.</figcaption>
         </figure>
-        <figure class="gallery-item">
+        <figure class="gallery-item" id="tour-modules" role="tabpanel" aria-labelledby="tour-tab-modules" data-tour-panel="modules">
           <img src="assets/screenshots/modules.webp" alt="Bark modules grid with per-module toggles" loading="lazy" width="1440" height="900">
           <figcaption>Modules — enable and configure every module per server.</figcaption>
         </figure>
+        </div>
       </div>
 
       <div class="perm-band reveal" aria-label="Authorization hierarchy">
@@ -532,6 +543,6 @@
     </div>
   </footer>
 
-  <script src="assets/site.js?v=3"></script>
+  <script src="assets/site.js?v=4"></script>
 </body>
 </html>

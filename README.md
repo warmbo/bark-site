@@ -23,7 +23,9 @@ add-on set.
 - `assets/fonts/` — self-hosted Inter + JetBrains Mono woff2 (same files the dashboard
   ships; no Google Fonts dependency).
 - `assets/screenshots/` — authentic, optimized WebP captures of the Bark dashboard
-  (overview, members, moderation, statistics, modules).
+  (overview, members, moderation, statistics, modules), presented as an accessible
+  keyboard-navigable tour.
+- `assets/bark-og.png` — 1200×630 OpenGraph/Twitter product share card.
 - `assets/bark-avatar.png` — the Bark bot's Discord avatar.
 - `assets/bark-wallpaper.png` — first-party wallpaper used as a restrained backdrop.
 - `docs/redesign-2026-08-20.md` — the capability matrix, current-site audit, proposed
