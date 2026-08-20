@@ -32,7 +32,7 @@
   <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/style.css?v=12">
+  <link rel="stylesheet" href="assets/style.css?v=13">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -97,7 +97,6 @@
             <figcaption><strong>Modules</strong><span>Enable and configure features per server</span></figcaption>
           </figure>
           <div class="shot-status"><span class="dot-green"></span><span data-hero-status aria-live="polite">Overview · Live</span></div>
-          <div class="hero-scanline" aria-hidden="true"></div>
         </div>
         <div class="hero-page-controls" aria-label="Choose a dashboard page">
           <button type="button" class="hero-page-dot is-active" data-hero-control="overview" aria-label="Show Overview" aria-pressed="true"></button>
@@ -105,7 +104,6 @@
           <button type="button" class="hero-page-dot" data-hero-control="moderation" aria-label="Show Moderation" aria-pressed="false"></button>
           <button type="button" class="hero-page-dot" data-hero-control="stats" aria-label="Show Statistics" aria-pressed="false"></button>
           <button type="button" class="hero-page-dot" data-hero-control="modules" aria-label="Show Modules" aria-pressed="false"></button>
-          <span class="hero-progress" aria-hidden="true"><span class="hero-progress-fill"></span></span>
         </div>
       </div>
     </section>
@@ -146,6 +144,24 @@
           <div class="wf-head"><span class="wf-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span><h3>Operate from the web</h3></div>
           <p>Configure modules and act from one live, role-gated server workspace.</p>
         </article>
+      </div>
+
+      <div class="builtin-modules" id="modules">
+        <div class="subsection-head">
+          <p class="eyebrow">Built-in modules</p>
+          <h3>Nine focused tools, visible at a glance.</h3>
+        </div>
+        <div class="module-grid reveal">
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon">MOD</span><h3>Moderation</h3><span class="mod-tag">core</span></div><p>Cases, warnings, AutoMod, anti-raid and voice actions.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon">REP</span><h3>Reputation</h3><span class="mod-tag">core</span></div><p>Engagement scoring, tiers, rewards and leaderboards.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon">ROLE</span><h3>Role Manager</h3><span class="mod-tag">core</span></div><p>Roles from joins, tenure, voice, Twitch and reactions.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon">ANN</span><h3>Announcements</h3><span class="mod-tag">core</span></div><p>Text and rich-embed announcements.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon">VC</span><h3>Auto Voice</h3><span class="mod-tag">core</span></div><p>Temporary voice channels with owner controls.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon">LOG</span><h3>Logging</h3><span class="mod-tag">core</span></div><p>Message, file, member and voice-event history.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon">HI</span><h3>Welcome</h3><span class="mod-tag">core</span></div><p>Welcome and goodbye messages with embeds.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon">SAY</span><h3>Speak</h3><span class="mod-tag">core</span></div><p>Dashboard-configured reusable phrases.</p></article>
+          <article class="module-card"><div class="module-card-head"><span class="mod-icon">?</span><h3>Help</h3><span class="mod-tag">core</span></div><p>Commands and dashboard links delivered by DM.</p></article>
+        </div>
       </div>
     </section>
 
@@ -196,124 +212,20 @@
       </div>
 
       <div class="perm-band reveal" aria-label="Authorization hierarchy">
-        <p class="perm-label">Authorization</p>
+        <div class="perm-intro">
+          <p class="eyebrow">Team access</p>
+          <h3>Permissions follow the job.</h3>
+          <p>Optional Discord OAuth sign-in with server-side role checks.</p>
+        </div>
         <ol class="perm-steps">
-          <li><span class="perm-level">Viewer</span><span class="perm-desc">read-only access</span></li>
-          <li><span class="perm-level">Moderator</span><span class="perm-desc">warn, timeout, moderate</span></li>
-          <li><span class="perm-level">Admin</span><span class="perm-desc">configure modules &amp; settings</span></li>
-          <li><span class="perm-level">Owner</span><span class="perm-desc">full instance control</span></li>
+          <li><span class="perm-level">Viewer</span><span class="perm-desc">Read</span></li>
+          <li><span class="perm-level">Moderator</span><span class="perm-desc">Act</span></li>
+          <li><span class="perm-level">Admin</span><span class="perm-desc">Configure</span></li>
+          <li><span class="perm-level">Owner</span><span class="perm-desc">Operate</span></li>
         </ol>
       </div>
     </section>
 
-    <!-- ══════════════ MODULES ══════════════ -->
-    <section class="content-section modules-section" id="modules">
-      <p class="eyebrow">Core modules</p>
-      <h2>Everything Bark does, out of the box.</h2>
-      <p class="section-lead">Nine modules, enabled and configured per server.</p>
-
-      <div class="module-grid reveal">
-        <details class="module-card">
-          <summary>
-            <span class="mod-icon" aria-hidden="true">🛡</span>
-            <span class="mod-title">Moderation</span>
-            <span class="mod-tag">core</span>
-          </summary>
-          <div class="mod-body">
-            <p>Cases, warnings, notes, bans, AutoMod, anti-raid and voice actions.</p>
-          </div>
-        </details>
-
-        <details class="module-card">
-          <summary>
-            <span class="mod-icon" aria-hidden="true">🏆</span>
-            <span class="mod-title">Reputation</span>
-            <span class="mod-tag">core</span>
-          </summary>
-          <div class="mod-body">
-            <p>Engagement scoring, named tiers, rewards and leaderboards.</p>
-          </div>
-        </details>
-
-        <details class="module-card">
-          <summary>
-            <span class="mod-icon" aria-hidden="true">🎭</span>
-            <span class="mod-title">Role Manager</span>
-            <span class="mod-tag">core</span>
-          </summary>
-          <div class="mod-body">
-            <p>Roles from joins, tenure, voice, Twitch status and reactions.</p>
-          </div>
-        </details>
-
-        <details class="module-card">
-          <summary>
-            <span class="mod-icon" aria-hidden="true">📣</span>
-            <span class="mod-title">Announcements</span>
-            <span class="mod-tag">core</span>
-          </summary>
-          <div class="mod-body">
-            <p>Text or rich-embed announcements to a configured channel.</p>
-          </div>
-        </details>
-
-        <details class="module-card">
-          <summary>
-            <span class="mod-icon" aria-hidden="true">🔊</span>
-            <span class="mod-title">Auto Voice</span>
-            <span class="mod-tag">core</span>
-          </summary>
-          <div class="mod-body">
-            <p>Temporary voice channels with naming, access and owner controls.</p>
-          </div>
-        </details>
-
-        <details class="module-card">
-          <summary>
-            <span class="mod-icon" aria-hidden="true">📜</span>
-            <span class="mod-title">Logging</span>
-            <span class="mod-tag">core</span>
-          </summary>
-          <div class="mod-body">
-            <p>Message, file, member and voice-event history.</p>
-          </div>
-        </details>
-
-        <details class="module-card">
-          <summary>
-            <span class="mod-icon" aria-hidden="true">👋</span>
-            <span class="mod-title">Welcome</span>
-            <span class="mod-tag">core</span>
-          </summary>
-          <div class="mod-body">
-            <p>Welcome and goodbye messages with optional rich embeds.</p>
-          </div>
-        </details>
-
-        <details class="module-card">
-          <summary>
-            <span class="mod-icon" aria-hidden="true">🗣</span>
-            <span class="mod-title">Speak</span>
-            <span class="mod-tag">core</span>
-          </summary>
-          <div class="mod-body">
-            <p>Dashboard-configured phrases for quick, repeatable responses.</p>
-          </div>
-        </details>
-
-        <details class="module-card">
-          <summary>
-            <span class="mod-icon" aria-hidden="true">❓</span>
-            <span class="mod-title">Help</span>
-            <span class="mod-tag">core</span>
-          </summary>
-          <div class="mod-body">
-            <p>Available commands and dashboard links delivered by DM.</p>
-          </div>
-        </details>
-      </div>
-      <p class="section-note">Select a module for details, or <a href="/auth/login">sign in</a> to configure one.</p>
-    </section>
 
     <!-- ══════════════ PLUGINS ══════════════ -->
     <section class="content-section plugins-section" id="plugins">
@@ -339,85 +251,37 @@
       </div>
     </section>
 
-    <!-- ══════════════ SELF-HOSTING ══════════════ -->
-    <section class="content-section self-hosted" id="self-hosting">
+    <!-- ══════════════ SELF-HOSTING + INSTALLATION ══════════════ -->
+    <section class="content-section operate-section" id="self-hosting">
       <p class="eyebrow">Self-hosted</p>
-      <h2>Simple to run. Yours to control.</h2>
-      <div class="host-grid reveal">
-        <div class="host-card">
-          <span class="host-icon" aria-hidden="true">⚙</span>
-          <h3>One service to operate</h3>
-          <p>Bot and dashboard run together.</p>
+      <h2>One service. Four steps to start.</h2>
+      <div class="operate-grid reveal">
+        <div class="host-summary">
+          <ul class="host-points">
+            <li><strong>Bot + dashboard</strong><span>run together</span></li>
+            <li><strong>Your data</strong><span>stays on your infrastructure</span></li>
+            <li><strong>SQLite default</strong><span>keeps backups compact</span></li>
+            <li><strong>Reverse-proxy ready</strong><span>with a health endpoint</span></li>
+          </ul>
+          <div class="install-cta">
+            <a href="https://github.com/warmbo/bark#quick-start" target="_blank" rel="noopener" class="button button-primary">Install Bark</a>
+            <a href="https://github.com/warmbo/bark" target="_blank" rel="noopener" class="button button-secondary">Read the docs</a>
+          </div>
         </div>
-        <div class="host-card">
-          <span class="host-icon" aria-hidden="true">🔒</span>
-          <h3>Your data stays yours</h3>
-          <p>Configuration and history remain on your infrastructure.</p>
-        </div>
-        <div class="host-card">
-          <span class="host-icon" aria-hidden="true">🚀</span>
-          <h3>Simple deployment</h3>
-          <p>Browser setup, reverse-proxy ready and health checked.</p>
-        </div>
-        <div class="host-card">
-          <span class="host-icon" aria-hidden="true">💾</span>
-          <h3>Easy to back up</h3>
-          <p>SQLite by default keeps backups compact.</p>
-        </div>
+        <ol class="install-steps">
+          <li><span class="step-num">1</span><div><strong>Install</strong><p>Run the installer.</p></div></li>
+          <li><span class="step-num">2</span><div><strong>Open Setup</strong><p>Finish in your browser.</p></div></li>
+          <li><span class="step-num">3</span><div><strong>Connect Discord</strong><p>Add your bot token.</p></div></li>
+          <li><span class="step-num">4</span><div><strong>Manage</strong><p>Choose a server.</p></div></li>
+        </ol>
       </div>
     </section>
 
-    <!-- ══════════════ INSTALLATION ══════════════ -->
-    <section class="content-section install-section" id="install">
-      <p class="eyebrow">Running Bark</p>
-      <h2>Install, then manage from the browser.</h2>
-      <ol class="install-steps reveal">
-        <li><span class="step-num">1</span><div><strong>Install</strong><p>Run the installer.</p></div></li>
-        <li><span class="step-num">2</span><div><strong>Open Setup</strong><p>Finish configuration in your browser.</p></div></li>
-        <li><span class="step-num">3</span><div><strong>Connect Discord</strong><p>Add your bot token and optional OAuth.</p></div></li>
-        <li><span class="step-num">4</span><div><strong>Manage</strong><p>Choose a server and enable modules.</p></div></li>
-      </ol>
-      <div class="install-cta">
-        <a href="https://github.com/warmbo/bark#quick-start" target="_blank" rel="noopener" class="button button-primary">Install Bark</a>
-        <a href="https://github.com/warmbo/bark" target="_blank" rel="noopener" class="button button-secondary">Read the documentation</a>
-      </div>
-    </section>
-
-    <!-- ══════════════ SECURITY ══════════════ -->
-    <section class="content-section security-section" id="security">
-      <p class="eyebrow">Security &amp; permissions</p>
-      <h2>Access that matches your team.</h2>
-      <div class="security-grid reveal">
-        <div class="sec-item">
-          <h3>Discord OAuth sign-in</h3>
-          <p>Optional OAuth2 authentication.</p>
-        </div>
-        <div class="sec-item">
-          <h3>Four role tiers</h3>
-          <p>Viewer → Moderator → Admin → Owner.</p>
-        </div>
-        <div class="sec-item">
-          <h3>Per-server authorization</h3>
-          <p>Discord permissions and configured roles.</p>
-        </div>
-        <div class="sec-item">
-          <h3>Owner-controlled instance</h3>
-          <p>Hosted access, backups and updates.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════ WHY ══════════════ -->
-    <section class="content-section why-section" id="why">
+    <!-- ══════════════ WHY + FINAL CTA ══════════════ -->
+    <section class="final-cta why-section" id="why">
       <p class="eyebrow">Why Bark</p>
       <h2>Replace the pile of disconnected control panels.</h2>
-      <p class="section-lead">One place replaces separate bots, commands and control panels.</p>
-    </section>
-
-    <!-- ══════════════ FINAL CTA ══════════════ -->
-    <section class="final-cta">
-      <h2>Run your Discord server from one control panel.</h2>
-      <p>Self-host Bark and manage your community from the browser.</p>
+      <p>One dashboard replaces separate bots, commands and settings.</p>
       <div class="actions">
         <a href="https://github.com/warmbo/bark#quick-start" target="_blank" rel="noopener" class="button button-primary">Install Bark</a>
         <a href="/auth/login" class="button button-secondary">Sign in with Discord</a>
@@ -457,6 +321,6 @@
     </div>
   </footer>
 
-  <script src="assets/site.js?v=5"></script>
+  <script src="assets/site.js?v=6"></script>
 </body>
 </html>

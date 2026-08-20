@@ -36,7 +36,7 @@
     var heroPages = Array.prototype.slice.call(heroShowcase.querySelectorAll('[data-hero-page]'));
     var heroControls = Array.prototype.slice.call(heroShowcase.querySelectorAll('[data-hero-control]'));
     var heroStatus = heroShowcase.querySelector('[data-hero-status]');
-    var heroProgress = heroShowcase.querySelector('.hero-progress-fill');
+
     var heroNames = heroPages.map(function (page) { return page.getAttribute('data-hero-page'); });
     var heroColors = {
       overview: '#3b82f6',
@@ -57,12 +57,6 @@
     var heroVisible = true;
     var heroReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function restartHeroProgress() {
-      if (!heroProgress || heroReduced) return;
-      heroProgress.classList.remove('is-running');
-      void heroProgress.offsetWidth;
-      heroProgress.classList.add('is-running');
-    }
 
     function heroShouldRun() {
       return !heroReduced && heroVisible && !heroHovered && !heroFocused && !document.hidden;
@@ -72,7 +66,6 @@
       clearTimeout(heroTimer);
       heroShowcase.classList.toggle('is-paused', !heroShouldRun());
       if (!heroShouldRun()) return;
-      restartHeroProgress();
       heroTimer = setTimeout(function () {
         showHeroPage((heroIndex + 1) % heroPages.length);
       }, heroDuration);
@@ -94,7 +87,7 @@
       setTimeout(function () {
         outgoing.hidden = true;
         outgoing.classList.remove('is-leaving');
-      }, 800);
+      }, 360);
 
       heroIndex = nextIndex;
       heroShowcase.style.setProperty('--hero-page-color', heroColors[name]);
