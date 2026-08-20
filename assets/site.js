@@ -47,6 +47,8 @@
     var heroIndex = 0;
     var heroTimer = null;
     var heroDuration = 4600;
+    var heroRemaining = heroDuration;
+    var heroStartedAt = 0;
     var heroHovered = false;
     var heroFocused = false;
     var heroVisible = true;
@@ -66,17 +68,30 @@
     }
 
     function scheduleHero() {
-      clearTimeout(heroTimer);
-      heroShowcase.classList.toggle('is-paused', !heroShouldRun());
-      if (!heroShouldRun()) return;
-      restartHeroBar();
+      var shouldRun = heroShouldRun();
+      heroShowcase.classList.toggle('is-paused', !shouldRun);
+      if (!shouldRun) {
+        if (heroTimer !== null) {
+          heroRemaining = Math.max(0, heroRemaining - (performance.now() - heroStartedAt));
+          clearTimeout(heroTimer);
+          heroTimer = null;
+        }
+        return;
+      }
+      if (heroTimer !== null) return;
+      heroStartedAt = performance.now();
       heroTimer = setTimeout(function () {
+        heroTimer = null;
         showHeroPage((heroIndex + 1) % heroPages.length);
-      }, heroDuration);
+      }, heroRemaining);
     }
 
     function showHeroPage(nextIndex) {
       if (nextIndex === heroIndex) { scheduleHero(); return; }
+      if (heroTimer !== null) {
+        clearTimeout(heroTimer);
+        heroTimer = null;
+      }
       var outgoing = heroPages[heroIndex];
       var incoming = heroPages[nextIndex];
       var name = heroNames[nextIndex];
@@ -100,6 +115,8 @@
         heroControls[i].classList.toggle('is-active', active);
         heroControls[i].setAttribute('aria-pressed', active ? 'true' : 'false');
       }
+      heroRemaining = heroDuration;
+      restartHeroBar();
       scheduleHero();
     }
 
