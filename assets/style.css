@@ -187,7 +187,7 @@ h2 {
 h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
 
 .content-section {
-  padding: 92px 0;
+  padding: 76px 0;
   border-top: 1px solid var(--border);
 }
 .section-lead {
@@ -195,7 +195,7 @@ h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
   color: var(--muted);
   font-size: 17px;
   line-height: 1.7;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 .section-note { color: var(--muted); font-size: 14px; margin-top: 28px; }
 .section-note a { color: var(--accent-hover); text-decoration: none; font-weight: 600; }
@@ -431,7 +431,7 @@ h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 24px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -695,21 +695,10 @@ h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
 
 /* ── Why ──────────────────────────────────────────────────────── */
 .why-section { max-width: var(--max); }
-.share-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
-.share-item {
-  border: 1px solid var(--border-strong);
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 9px 16px;
-  color: var(--foreground);
-  font-size: 14px;
-  font-weight: 500;
-}
-.share-item::before { content: '✓ '; color: var(--green); font-weight: 700; }
 
 /* ── Final CTA ────────────────────────────────────────────────── */
 .final-cta {
-  padding: 96px 24px;
+  padding: 78px 24px;
   text-align: center;
   border-top: 1px solid var(--border);
   background: radial-gradient(60% 120% at 50% 0%, var(--accent-dim) 0%, transparent 60%);
