@@ -1,91 +1,537 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bark — Self-hosted Discord management</title>
-  <meta name="description" content="Bark is a self-hosted Discord management bot and dashboard for moderation, roles, reputation, voice, and automation.">
+  <title>Bark — Self-hosted Discord server management</title>
+  <meta name="description" content="Bark is a self-hosted, dashboard-first Discord management bot for moderation, reputation, roles, automation, logging and community administration. Discord bot and web dashboard in one process.">
+  <link rel="canonical" href="https://bark.warx.org/">
+
+  <!-- Open Graph -->
   <meta property="og:site_name" content="Bark">
-  <meta property="og:title" content="Bark — Self-hosted Discord management">
-  <meta property="og:description" content="One dashboard for moderation, automation, roles, reputation, and voice.">
+  <meta property="og:title" content="Bark — Self-hosted Discord server management">
+  <meta property="og:description" content="A self-hosted, dashboard-first Discord management bot. Moderation, reputation, roles, automation, logging and community administration from one server workspace.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bark.warx.org/">
   <meta property="og:image" content="https://bark.warx.org/assets/bark-avatar.png">
+  <meta property="og:image:width" content="500">
+  <meta property="og:image:height" content="500">
+
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
-  <meta name="theme-color" content="#2563eb">
+  <meta name="twitter:title" content="Bark — Self-hosted Discord server management">
+  <meta name="twitter:description" content="A self-hosted, dashboard-first Discord management bot. Moderation, reputation, roles, automation, logging and community administration from one server workspace.">
+  <meta name="twitter:image" content="https://bark.warx.org/assets/bark-avatar.png">
+
+  <meta name="theme-color" content="#3b82f6">
   <link rel="icon" type="image/png" href="assets/bark-avatar.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css?v=5">
+
+  <!-- Self-hosted fonts (matches the dashboard's no-CDN rule) -->
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css?v=8">
 </head>
 <body>
-  <header class="site-header">
-    <a href="/" class="brand"><img src="assets/bark-avatar.png" alt="Bark logo" width="36" height="36"><span>Bark</span></a>
-    <nav aria-label="Primary"><a href="#features">Features</a><a href="#modules">Modules</a><a href="#dashboard">Dashboard</a><a href="https://github.com/warmbo/bark" target="_blank" rel="noopener">GitHub</a><a href="/auth/login" class="button button-small">Sign in</a></nav>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <a href="/" class="brand" aria-label="Bark home"><img src="assets/bark-avatar.png" alt="" width="32" height="32"><span>Bark</span></a>
+    <nav class="site-nav" aria-label="Primary" id="site-nav">
+      <a href="#product">Product</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#modules">Modules</a>
+      <a href="#plugins">Plugins</a>
+      <a href="#self-hosting">Self-hosting</a>
+      <a href="https://github.com/warmbo/bark" target="_blank" rel="noopener">Docs</a>
+      <a href="/auth/login" class="nav-cta">Sign in</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
-  <main>
+  <main id="main">
+    <!-- ══════════════ HERO ══════════════ -->
     <section class="hero">
-      <video class="hero-avatar hero-video" src="assets/bark-vid.mp4" autoplay muted loop playsinline preload="auto" aria-label="Bark Discord bot"></video>
-      <p class="eyebrow">Discord management, self-hosted</p>
-      <h1>Your server,<br>under control.</h1>
-      <p class="hero-copy">Bark is a good doggy: a Discord bot and focused dashboard for moderation, roles, reputation, voice, and automation.</p>
-      <div class="actions">
-        <a href="/auth/login" class="button">Sign in with Discord</a>
-        <a href="https://github.com/warmbo/bark" target="_blank" rel="noopener" class="button button-secondary">View source</a>
+      <div class="hero-inner">
+        <div class="eyebrow"><span class="dot-green"></span>Self-hosted · Open source · Dashboard-first</div>
+        <h1>Discord management from <span class="accent">one dashboard</span>.</h1>
+        <p class="hero-copy">
+          Bark pairs moderation, reputation, roles, automation, logging and community
+          administration into a single self-hosted Discord control panel — a Discord bot
+          and a browser dashboard running together in one process.
+        </p>
+        <div class="actions">
+          <a href="#dashboard" class="button button-primary">Explore Bark</a>
+          <a href="https://github.com/warmbo/bark" target="_blank" rel="noopener" class="button button-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            View on GitHub
+          </a>
+        </div>
+        <ul class="trust-list" aria-label="Bark trust indicators">
+          <li>Open source</li><li>Self-hosted</li><li>MIT licensed</li><li>Your data stays yours</li>
+        </ul>
       </div>
-      <p class="access-note">Bark will protect you like man's best friend. This hosted instance is private, so an owner-issued invite is required before Bark can help watch a server you manage.</p>
-    </section>
 
-    <section class="stats" aria-label="Bark at a glance">
-      <div><strong>5</strong><span>servers watching</span></div>
-      <div><strong>32,167</strong><span>lines of code</span></div>
-      <div><strong>153</strong><span>source files</span></div>
-      <div><strong>885</strong><span>reputation events logged</span></div>
-      <div><strong>287</strong><span>passing tests</span></div>
-    </section>
-
-    <section id="features" class="content-section">
-      <p class="eyebrow">Built for operators</p>
-      <h2>The essentials, in one place.</h2>
-      <div class="feature-grid">
-        <article><span aria-hidden="true">🛡️</span><h3>Moderation</h3><p>Bark guards the yard with cases, warnings, notes, rulesets, audit history, member actions, and voice tracking.</p></article>
-        <article><span aria-hidden="true">🏆</span><h3>Community</h3><p>Good behavior earns levels, thanks, emoji and reaction scoring, named tiers, leaderboards, and rewards.</p></article>
-        <article><span aria-hidden="true">⚙️</span><h3>Automation</h3><p>Bark takes care of the fleas on its own: role rules, temporary voice, announcements, welcomes, and logging.</p></article>
+      <div class="hero-showcase" aria-hidden="true">
+        <div class="shot-frame">
+          <img src="assets/screenshots/dash-hero.webp" alt="Bark dashboard — server overview with member stats, message of the day and upcoming events" loading="eager" fetchpriority="high" width="1010" height="1060">
+          <div class="shot-status"><span class="dot-green"></span>Connected · Live</div>
+        </div>
       </div>
     </section>
 
-    <section id="modules" class="content-section modules-section">
+    <!-- ══════════════ WHAT BARK ACTUALLY DOES ══════════════ -->
+    <section class="content-section" id="product">
+      <p class="eyebrow">What Bark actually does</p>
+      <h2>Real workflows, not just commands.</h2>
+      <p class="section-lead">Bark is server management software. Each area below is a set of connected workflows that share one dashboard, one permission model and one server workspace.</p>
+
+      <div class="workflow-grid reveal">
+        <article class="workflow-card">
+          <div class="wf-head"><span class="wf-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span><h3>Moderate</h3></div>
+          <p>Warn, note, timeout, kick and ban with a persistent case history. Enforce rulesets and word lists, and act on voice channels directly from the dashboard.</p>
+          <ul class="cap-list">
+            <li>Cases, warnings &amp; private moderator notes</li>
+            <li>Timeouts, kicks, bans &amp; unbans</li>
+            <li>Rulesets (AutoMod) &amp; word lists</li>
+            <li>Voice kick / move / mute / deafen</li>
+            <li>Audit history for every action</li>
+          </ul>
+        </article>
+
+        <article class="workflow-card">
+          <div class="wf-head"><span class="wf-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><h3>Manage members</h3></div>
+          <p>Search your member list, inspect each member's activity and moderation history, and perform administrative actions without switching tools.</p>
+          <ul class="cap-list">
+            <li>Searchable member directory with filters</li>
+            <li>Per-member profile &amp; moderation history</li>
+            <li>Review activity and reputation at a glance</li>
+            <li>Take action from the member view</li>
+          </ul>
+        </article>
+
+        <article class="workflow-card">
+          <div class="wf-head"><span class="wf-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span><h3>Build reputation</h3></div>
+          <p>Reward engagement across messages, reactions, emoji, voice time and thanks. Members climb a named tier ladder with rewards and leaderboards.</p>
+          <ul class="cap-list">
+            <li>Message, reaction, emoji, voice &amp; thanks scoring</li>
+            <li>14 named tiers with unlock rewards</li>
+            <li>Leaderboards &amp; top-member widgets</li>
+            <li>Tunable weights and daily caps</li>
+          </ul>
+        </article>
+
+        <article class="workflow-card">
+          <div class="wf-head"><span class="wf-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.8-1.1 2-1.7 3.3-1.7H22"/><path d="m18 2 4 4-4 4"/><path d="M2 6h1.9"/><path d="M22 18h-5.9c-1.3 0-2.6-.7-3.3-1.8l-.5-.8"/><path d="m18 14 4 4-4 4"/></svg></span><h3>Automate roles</h3></div>
+          <p>Assign roles automatically based on how members join, how long they stay, voice presence, Twitch streaming status, and reaction claims.</p>
+          <ul class="cap-list">
+            <li>Assign roles on join</li>
+            <li>Tenure-based roles over time</li>
+            <li>Voice-activity &amp; Twitch-live roles</li>
+            <li>Reaction-claimed roles</li>
+          </ul>
+        </article>
+
+        <article class="workflow-card">
+          <div class="wf-head"><span class="wf-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span><h3>Automate the server</h3></div>
+          <p>Take care of the recurring work: announcements, welcome flows, temporary voice channels and event logging run on their own.</p>
+          <ul class="cap-list">
+            <li>Scheduled announcements (text or embed)</li>
+            <li>Welcome &amp; goodbye messages with embeds</li>
+            <li>On-demand temporary voice channels</li>
+            <li>Message, member &amp; voice event logging</li>
+          </ul>
+        </article>
+
+        <article class="workflow-card">
+          <div class="wf-head"><span class="wf-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span><h3>Operate from the web</h3></div>
+          <p>Configure modules, review live activity and perform actions through the Bark dashboard — not a tangle of slash commands and bot settings.</p>
+          <ul class="cap-list">
+            <li>One workspace per server</li>
+            <li>Live, in-browser activity updates</li>
+            <li>Configure modules without touching config files</li>
+            <li>Role-gated access to every page and action</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════════ DASHBOARD ══════════════ -->
+    <section class="content-section dashboard-section" id="dashboard">
+      <div class="section-copy">
+        <p class="eyebrow">Dashboard-first</p>
+        <h2>One server. One workspace.</h2>
+        <p>
+          Sign in with Discord, pick a server you manage, and everything lives in one
+          consistent interface. No more configuring each bot from a separate command.
+        </p>
+        <ul class="dash-points">
+          <li><strong>Server switching</strong> — move between the servers you manage from the sidebar.</li>
+          <li><strong>Module workspaces</strong> — every module has the same Operate / Configure workspace.</li>
+          <li><strong>Live updates</strong> — activity streams into the dashboard as it happens.</li>
+          <li><strong>Activity summaries</strong> — see what's happening at a glance.</li>
+          <li><strong>Role-gated access</strong> — Viewer → Moderator → Admin → Owner.</li>
+        </ul>
+        <a href="/auth/login" class="button button-primary">Open the dashboard</a>
+      </div>
+
+      <div class="gallery reveal">
+        <figure class="gallery-item gallery-item-featured">
+          <img src="assets/screenshots/01-overview.webp" alt="Bark server overview — stat cards, recent activity, quick actions and server info" loading="lazy" width="1440" height="900">
+          <figcaption>Server overview — health, member counts, activity and quick actions.</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets/screenshots/members.webp" alt="Bark member directory with search and filters" loading="lazy" width="1440" height="900">
+          <figcaption>Member management — locate members and review their state.</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets/screenshots/moderation.webp" alt="Bark moderation workspace with Operate and Configure tabs" loading="lazy" width="1440" height="900">
+          <figcaption>Moderation — cases, warnings, notes, rulesets and voice.</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets/screenshots/stats.webp" alt="Bark statistics page with activity charts" loading="lazy" width="1440" height="900">
+          <figcaption>Statistics — growth, activity and engagement, charted.</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets/screenshots/modules.webp" alt="Bark modules grid with per-module toggles" loading="lazy" width="1440" height="900">
+          <figcaption>Modules — enable and configure every module per server.</figcaption>
+        </figure>
+      </div>
+
+      <div class="perm-band reveal" aria-label="Authorization hierarchy">
+        <p class="perm-label">Authorization</p>
+        <ol class="perm-steps">
+          <li><span class="perm-level">Viewer</span><span class="perm-desc">read-only access</span></li>
+          <li><span class="perm-level">Moderator</span><span class="perm-desc">warn, timeout, moderate</span></li>
+          <li><span class="perm-level">Admin</span><span class="perm-desc">configure modules &amp; settings</span></li>
+          <li><span class="perm-level">Owner</span><span class="perm-desc">full instance control</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ══════════════ MODULES ══════════════ -->
+    <section class="content-section modules-section" id="modules">
       <p class="eyebrow">Core modules</p>
-      <h2>Everything Bark can do, out of the box.</h2>
-      <p class="section-intro">Every core module is a workspace in the dashboard — enable it per server, configure it, and it just works.</p>
-      <div class="feature-grid">
-        <article><span aria-hidden="true">🛡️</span><h3>Moderation</h3><p>Warn, timeout, kick, ban, and voice-control members with full case tracking, audit logging, and automatic content moderation.</p></article>
-        <article><span aria-hidden="true">🏆</span><h3>Reputation</h3><p>Level system, thanks, reactions, voice rewards, tiers, and a showoff channel.</p></article>
-        <article><span aria-hidden="true">🎭</span><h3>Role Manager</h3><p>Auto-assign roles on join, tenure, voice, Twitch streams, and reaction claims.</p></article>
-        <article><span aria-hidden="true">📣</span><h3>Announcements</h3><p>Send text or embed announcements to a configurable channel.</p></article>
-        <article><span aria-hidden="true">🔊</span><h3>Auto Voice</h3><p>AVC-compatible temporary voice channels with dashboard configuration.</p></article>
-        <article><span aria-hidden="true">📜</span><h3>Logging</h3><p>Log message edits, deletes, file uploads, member joins/leaves, and voice state.</p></article>
-        <article><span aria-hidden="true">👋</span><h3>Welcome</h3><p>Welcome messages, goodbye messages, and optional embeds for new members.</p></article>
-        <article><span aria-hidden="true">🗣️</span><h3>Speak</h3><p>Preset phrases triggered by <code>/bark speak &lt;key&gt;</code> — configured in the dashboard.</p></article>
-        <article><span aria-hidden="true">❓</span><h3>Help</h3><p>DMs every available slash command plus dashboard info.</p></article>
+      <h2>Everything Bark does, out of the box.</h2>
+      <p class="section-lead">Nine core modules. Each is a workspace in the dashboard — enable it per server, configure it, and it just works.</p>
+
+      <div class="module-grid reveal">
+        <details class="module-card" open>
+          <summary>
+            <span class="mod-icon" aria-hidden="true">🛡</span>
+            <span class="mod-title">Moderation</span>
+            <span class="mod-tag">core</span>
+          </summary>
+          <div class="mod-body">
+            <p>Centralized moderation with persistent history and automatic content protection.</p>
+            <ul class="cap-list">
+              <li>Cases and warnings with private notes</li>
+              <li>Timeouts, kicks, bans and unbans</li>
+              <li>Rulesets and word lists (AutoMod)</li>
+              <li>Voice moderation — kick, move, mute, deafen</li>
+              <li>Scam, account-age and anti-raid protection</li>
+              <li>Full audit history</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="module-card">
+          <summary>
+            <span class="mod-icon" aria-hidden="true">🏆</span>
+            <span class="mod-title">Reputation</span>
+            <span class="mod-tag">core</span>
+          </summary>
+          <div class="mod-body">
+            <p>Levels and reputation built from real engagement.</p>
+            <ul class="cap-list">
+              <li>Message, emoji, reaction, voice and thanks scoring</li>
+              <li>Named tier ladder with rewards</li>
+              <li>Leaderboards and top-member widgets</li>
+              <li>Configurable weights and daily caps</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="module-card">
+          <summary>
+            <span class="mod-icon" aria-hidden="true">🎭</span>
+            <span class="mod-title">Role Manager</span>
+            <span class="mod-tag">core</span>
+          </summary>
+          <div class="mod-body">
+            <p>Automatic role assignment based on real behavior.</p>
+            <ul class="cap-list">
+              <li>Roles on join</li>
+              <li>Tenure-based roles</li>
+              <li>Voice-activity roles</li>
+              <li>Twitch-live roles</li>
+              <li>Reaction-claimed roles</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="module-card">
+          <summary>
+            <span class="mod-icon" aria-hidden="true">📣</span>
+            <span class="mod-title">Announcements</span>
+            <span class="mod-tag">core</span>
+          </summary>
+          <div class="mod-body">
+            <p>Send text or embed announcements to a configured channel.</p>
+            <ul class="cap-list">
+              <li>Text or rich embed announcements</li>
+              <li>Configurable target channel</li>
+              <li>Default embed color</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="module-card">
+          <summary>
+            <span class="mod-icon" aria-hidden="true">🔊</span>
+            <span class="mod-title">Auto Voice</span>
+            <span class="mod-tag">core</span>
+          </summary>
+          <div class="mod-body">
+            <p>On-demand temporary voice channels, configured from the dashboard.</p>
+            <ul class="cap-list">
+              <li>Create &amp; manage temporary channels</li>
+              <li>Configurable naming and limits</li>
+              <li>Optional auto-join role</li>
+              <li>Owner rename / limit / lock controls</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="module-card">
+          <summary>
+            <span class="mod-icon" aria-hidden="true">📜</span>
+            <span class="mod-title">Logging</span>
+            <span class="mod-tag">core</span>
+          </summary>
+          <div class="mod-body">
+            <p>Discord event logging to keep a record of your server.</p>
+            <ul class="cap-list">
+              <li>Message edits and deletes</li>
+              <li>File uploads</li>
+              <li>Member joins and leaves</li>
+              <li>Voice state changes</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="module-card">
+          <summary>
+            <span class="mod-icon" aria-hidden="true">👋</span>
+            <span class="mod-title">Welcome</span>
+            <span class="mod-tag">core</span>
+          </summary>
+          <div class="mod-body">
+            <p>Member welcome and goodbye automation.</p>
+            <ul class="cap-list">
+              <li>Welcome messages</li>
+              <li>Goodbye messages</li>
+              <li>Optional rich embeds</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="module-card">
+          <summary>
+            <span class="mod-icon" aria-hidden="true">🗣</span>
+            <span class="mod-title">Speak</span>
+            <span class="mod-tag">core</span>
+          </summary>
+          <div class="mod-body">
+            <p>Preset phrases triggered by <code>/bark speak &lt;key&gt;</code>.</p>
+            <ul class="cap-list">
+              <li>Dashboard-configured phrase keys</li>
+              <li>Quick, repeatable responses</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="module-card">
+          <summary>
+            <span class="mod-icon" aria-hidden="true">❓</span>
+            <span class="mod-title">Help</span>
+            <span class="mod-tag">core</span>
+          </summary>
+          <div class="mod-body">
+            <p>Command reference delivered right to members.</p>
+            <ul class="cap-list">
+              <li>DMs every available slash command</li>
+              <li>Dashboard info included</li>
+            </ul>
+          </div>
+        </details>
       </div>
-      <p class="section-intro">Plus single-file plugins — trivia, dice roller, polls, fun facts, and more — from the <a href="https://github.com/warmbo/bark-plugins" target="_blank" rel="noopener">bark-plugins</a> repo, installed from the dashboard without a restart.</p>
+      <p class="section-note"><a href="/auth/login">Sign in</a> to configure modules for a server you manage.</p>
     </section>
 
-    <section id="dashboard" class="content-section dashboard-section">
-      <div class="section-copy"><p class="eyebrow">Dashboard-first</p><h2>One workspace per server.</h2><p>Use Discord sign-in to see the servers you can administer. Configure modules, review activity, manage members, and act without leaving the browser.</p><a href="/dashboard" class="text-link">Open dashboard <span aria-hidden="true">→</span></a></div>
-      <img src="assets/dashboard-preview.png" alt="Bark dashboard workspace" loading="lazy">
+    <!-- ══════════════ PLUGINS ══════════════ -->
+    <section class="content-section plugins-section" id="plugins">
+      <p class="eyebrow">Extensible</p>
+      <h2>Start with core. Add more when you need it.</h2>
+      <p class="section-lead">
+        Bark's plugin system lets you install single-file modules without editing the bot's
+        code or restarting the application. Plugins use the same <code>BarkModule</code>
+        contract as built-in modules, are enabled per server, and are off by default until
+        you turn them on.
+      </p>
+
+      <div class="plugin-grid reveal">
+        <div class="plugin-card"><span class="plugin-icon" aria-hidden="true">🎲</span><h3>Fun</h3><p><code>/roll</code>, <code>/coinflip</code>, <code>/fact</code>, <code>/eightball</code></p></div>
+        <div class="plugin-card"><span class="plugin-icon" aria-hidden="true">🔍</span><h3>Info &amp; Tools</h3><p><code>/serverinfo</code>, <code>/userinfo</code>, <code>/ping</code></p></div>
+        <div class="plugin-card"><span class="plugin-icon" aria-hidden="true">🎉</span><h3>Birthdays</h3><p>Set &amp; list birthdays, announced on the day</p></div>
+        <div class="plugin-card"><span class="plugin-icon" aria-hidden="true">🎁</span><h3>Giveaway</h3><p>React-to-enter with automatic winner drawing</p></div>
+        <div class="plugin-card"><span class="plugin-icon" aria-hidden="true">🧠</span><h3>Trivia</h3><p>Multiplayer quiz with categories &amp; leaderboards</p></div>
+        <div class="plugin-card"><span class="plugin-icon" aria-hidden="true">🗳</span><h3>Poll</h3><p>Reaction-based polls</p></div>
+        <div class="plugin-card"><span class="plugin-icon" aria-hidden="true">🪪</span><h3>Profiles</h3><p>Rendered member profile cards via Bark's media engine</p></div>
+        <div class="plugin-card"><span class="plugin-icon" aria-hidden="true">🐕</span><h3>Good Dog</h3><p>Woofs at "bark" messages — opt-in per server</p></div>
+      </div>
+
+      <div class="install-note">
+        <span class="note-icon" aria-hidden="true">⬆</span>
+        <p><strong>Install from the dashboard.</strong> Upload a <code>.py</code> file on the Modules page — no restart, no code edits. Owner-only.</p>
+        <a href="https://github.com/warmbo/bark-plugins" target="_blank" rel="noopener" class="text-link">Browse Bark plugins →</a>
+      </div>
     </section>
 
-    <section class="content-section self-hosted">
-      <p class="eyebrow">Your infrastructure</p><h2>Simple to run. Yours to control.</h2>
-      <p>Bark is open source, runs as one Python application, and keeps its data on infrastructure you operate. Good dog. No cloud kennel required.</p>
-      <a href="https://github.com/warmbo/bark" target="_blank" rel="noopener" class="button button-secondary">Read the documentation</a>
+    <!-- ══════════════ SELF-HOSTING ══════════════ -->
+    <section class="content-section self-hosted" id="self-hosting">
+      <p class="eyebrow">Self-hosted</p>
+      <h2>Simple to run. Yours to control.</h2>
+      <div class="host-grid reveal">
+        <div class="host-card">
+          <span class="host-icon" aria-hidden="true">⚙</span>
+          <h3>One service to operate</h3>
+          <p>Bark runs the Discord bot and management dashboard together in a single Python application — one thing to run, watch and back up.</p>
+        </div>
+        <div class="host-card">
+          <span class="host-icon" aria-hidden="true">🔒</span>
+          <h3>Your data stays yours</h3>
+          <p>Server configuration, moderation history and reputation data live on infrastructure you control. No cloud kennel required.</p>
+        </div>
+        <div class="host-card">
+          <span class="host-icon" aria-hidden="true">🚀</span>
+          <h3>Simple deployment</h3>
+          <p>Install, complete setup in the browser, and place it behind your preferred reverse proxy. A health endpoint keeps monitoring easy.</p>
+        </div>
+        <div class="host-card">
+          <span class="host-icon" aria-hidden="true">💾</span>
+          <h3>Easy to back up</h3>
+          <p>A compact deployment with SQLite default makes small installations easy to operate, protect and move.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ INSTALLATION ══════════════ -->
+    <section class="content-section install-section" id="install">
+      <p class="eyebrow">Running Bark</p>
+      <h2>Install, then manage from the browser.</h2>
+      <ol class="install-steps reveal">
+        <li><span class="step-num">1</span><div><strong>Install</strong><p>One command clones the repo and starts Bark on Debian, Ubuntu, or any system with Python 3.13+.</p></div></li>
+        <li><span class="step-num">2</span><div><strong>Open Setup</strong><p>A browser-based first-run wizard writes your <code>.env</code> — no hand-editing required.</p></div></li>
+        <li><span class="step-num">3</span><div><strong>Connect Discord</strong><p>Add your bot token and (optionally) OAuth2 login. Bark boots and connects.</p></div></li>
+        <li><span class="step-num">4</span><div><strong>Manage Server</strong><p>Enable modules per server, configure them, and moderate from the dashboard.</p></div></li>
+      </ol>
+      <div class="install-cta">
+        <a href="https://github.com/warmbo/bark#quick-start" target="_blank" rel="noopener" class="button button-primary">Install Bark</a>
+        <a href="https://github.com/warmbo/bark" target="_blank" rel="noopener" class="button button-secondary">Read the documentation</a>
+      </div>
+    </section>
+
+    <!-- ══════════════ SECURITY ══════════════ -->
+    <section class="content-section security-section" id="security">
+      <p class="eyebrow">Security &amp; permissions</p>
+      <h2>Administration software, with a permissions model.</h2>
+      <p class="section-lead">Bark is built for operators. Access is enforced on pages and APIs, not just hidden buttons.</p>
+      <div class="security-grid reveal">
+        <div class="sec-item">
+          <h3>Discord OAuth sign-in</h3>
+          <p>Optional Discord OAuth2 login. With OAuth disabled, Bark runs public for trusted local networks.</p>
+        </div>
+        <div class="sec-item">
+          <h3>Four role tiers</h3>
+          <p>Viewer → Moderator → Admin → Owner gate every page and API action.</p>
+        </div>
+        <div class="sec-item">
+          <h3>Per-server authorization</h3>
+          <p>Manage access follows Discord permissions and roles the server owner configures.</p>
+        </div>
+        <div class="sec-item">
+          <h3>Owner-controlled instance</h3>
+          <p>Instance owner controls hosted access, backups and updates.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ WHY ══════════════ -->
+    <section class="content-section why-section" id="why">
+      <p class="eyebrow">Why Bark</p>
+      <h2>Replace the pile of disconnected control panels.</h2>
+      <p class="section-lead">
+        Many communities run one bot for moderation, another for levels, another for temporary
+        voice channels, another for roles — and configure each one with separate commands.
+        Bark treats the problem as <strong>server management software</strong>.
+      </p>
+      <div class="share-row reveal">
+        <span class="share-item">One dashboard</span>
+        <span class="share-item">One permission model</span>
+        <span class="share-item">One server workspace</span>
+        <span class="share-item">One activity history</span>
+        <span class="share-item">One deployment</span>
+        <span class="share-item">One visual language</span>
+      </div>
+    </section>
+
+    <!-- ══════════════ FINAL CTA ══════════════ -->
+    <section class="final-cta">
+      <h2>Run your Discord server from one control panel.</h2>
+      <p>Self-host Bark, manage your community from the browser, and extend it with plugins when you're ready.</p>
+      <div class="actions">
+        <a href="https://github.com/warmbo/bark#quick-start" target="_blank" rel="noopener" class="button button-primary">Install Bark</a>
+        <a href="/auth/login" class="button button-secondary">Sign in with Discord</a>
+      </div>
     </section>
   </main>
 
-  <footer><span>© Bark · MIT License</span><a href="https://github.com/warmbo/bark" target="_blank" rel="noopener">GitHub</a></footer>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="brand"><img src="assets/bark-avatar.png" alt="" width="28" height="28"><span>Bark</span></a>
+        <p>Self-hosted, dashboard-first Discord server management.</p>
+      </div>
+      <nav class="footer-col" aria-label="Product">
+        <p class="footer-head">Product</p>
+        <a href="#product">What Bark does</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#modules">Modules</a>
+        <a href="#plugins">Plugins</a>
+      </nav>
+      <nav class="footer-col" aria-label="Resources">
+        <p class="footer-head">Resources</p>
+        <a href="https://github.com/warmbo/bark" target="_blank" rel="noopener">Documentation</a>
+        <a href="https://github.com/warmbo/bark-plugins" target="_blank" rel="noopener">Plugin repository</a>
+        <a href="https://github.com/warmbo/bark" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <div class="footer-meta">
+        <p class="footer-head">Project</p>
+        <a href="/auth/login">Sign in</a>
+        <a href="https://github.com/warmbo/bark" target="_blank" rel="noopener">License — MIT</a>
+        <span class="footer-version">v0.3.332</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Bark · MIT License</span>
+      <span>Self-hosted · Open source</span>
+    </div>
+  </footer>
+
+  <script src="assets/site.js?v=3"></script>
 </body>
 </html>
